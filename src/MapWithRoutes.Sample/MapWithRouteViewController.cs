@@ -26,8 +26,8 @@ namespace MapWithRoutes.Sample
 			{
 				Name = "Home",
 				Description = "Boring Home Town",
-				Latitude = 33.375280,
-				Longitude = -95.68744000000001,
+				Latitude = 32.725410,
+				Longitude = -97.320840,
 			};
             
             var office = new Place()

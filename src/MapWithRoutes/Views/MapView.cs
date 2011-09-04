@@ -12,6 +12,8 @@ using System.Text.RegularExpressions;
 using MonoTouch.Foundation;
 using RestSharp;
 using ServiceStack.Text;
+using RestSharp.Contrib;
+using System.Text;
 
 namespace MapWithRoutes
 {
@@ -29,6 +31,7 @@ namespace MapWithRoutes
 		RestClient _Client { get; set; }
 		RestRequest _Request { get; set; }
 		RestResponse _Response { get; set; }
+		RestResponse<RouteResult> _RouteResponse { get; set; }
 		RouteResult _RouteResult { get; set; }
 		
 		public MapView()
@@ -59,7 +62,7 @@ namespace MapWithRoutes
 			CalculateRoutesAction = CalculateRoutes;
 				
 			_Client = new RestClient(@"http://maps.googleapis.com/maps/api/directions/");
-			_Client.AddDefaultUrlSegment("sensor", "true");
+			_Client.AddDefaultUrlSegment("sensor", "false");
 			
 			_MapView.AddSubview(_RouteView);
 			this.AddSubview(_MapView);
@@ -89,11 +92,15 @@ namespace MapWithRoutes
 			
 			using(var pool = new NSAutoreleasePool())
 			{
-				_MapView.AddAnnotation(from);
-				_MapView.AddAnnotation(to);
-				
-				UpdateRouteView();
-				CenterMap();
+
+				pool.InvokeOnMainThread(()=>
+				{
+					_MapView.AddAnnotation(new MKAnnotation[] { from, to });
+					_MapView.SetRegion(new MKCoordinateRegion(from.Coordinate, new MKCoordinateSpan(0.2, 0.2)), true);
+					
+					UpdateRouteView();
+					CenterMap();
+				});
 			}
 		}
 		
@@ -134,7 +141,7 @@ namespace MapWithRoutes
 		
 		private void CalculateRoutes(CLLocationCoordinate2D from, CLLocationCoordinate2D to)
 		{
-			try 
+			try
 			{
 				_Request = new RestRequest("json", Method.GET);
 				_Request.AddParameter("sensor", "false");
@@ -146,15 +153,22 @@ namespace MapWithRoutes
 				_Request.AddParameter("destination", dest);
 				
 				_Response = _Client.Execute(_Request);
+				_RouteResponse = _Client.Execute<RouteResult>(_Request);
 				
 				if(!string.IsNullOrWhiteSpace(_Response.Content))
 				{
 					_RouteResult = ParseRouteJson(_Response.Content);
-					Console.WriteLine("Directions Response Status: {0}", _RouteResult.Status);
 					
-					if(_RouteResult.Routes.Any())
+//					if(_RouteResult.Routes.Any())
+//					{
+//						var point = _RouteResult.Routes.FirstOrDefault();
+//						if(point != null)
+//							_Routes = DecodePolyLine(point.Overview_Polyline.Points).ToArray();
+//					}
+					
+					if(_RouteResponse.Data.Routes.Any())
 					{
-						var point = _RouteResult.Routes.FirstOrDefault();
+						var point = _RouteResponse.Data.Routes.FirstOrDefault();
 						if(point != null)
 							_Routes = DecodePolyLine(point.Overview_Polyline.Points).ToArray();
 					}
