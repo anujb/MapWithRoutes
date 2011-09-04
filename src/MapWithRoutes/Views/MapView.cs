@@ -184,35 +184,6 @@ namespace MapWithRoutes
 			return result;
 		}
 		
-		private IEnumerable<CLLocation> CalculateRoutesFrom(CLLocationCoordinate2D from, CLLocationCoordinate2D to)
-		{
-//			var saddr = string.Format(@"{0},{1}", from.Latitude, from.Longitude);
-//			var daddr = string.Format(@"{0},{1}", to.Latitude, to.Longitude);
-//			
-//			saddr = "dallas,tx";
-//			daddr = "austin,tx";
-//			
-//			var uri = new Uri(string.Format(@"http://maps.google.com/maps?output=dragdir&saddr={0}&daddr={1}", saddr, daddr));
-//			Request = new HttpWebRequest(uri);
-			
-			var apiResponse = string.Empty;
-//			var response = Request.GetResponse();
-//			
-//			using(var stream = response.GetResponseStream())
-//			{
-//				using(var rdr = new StreamReader(stream))
-//				{
-//					apiResponse = rdr.ReadToEnd();
-//				}
-//			}
-//			
-//			var regex = new Regex("points:\\\"([^\\\"]*)\\\"");
-//			var match = regex.Match(apiResponse);
-//		    apiResponse = match.Groups[1].Value;
-			
-			return DecodePolyLine(apiResponse);
-		}
-		
 		public void CenterMap()
 		{
 			double maxLatitude = -90;
