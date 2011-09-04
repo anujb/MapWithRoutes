@@ -82,18 +82,20 @@ namespace MapWithRoutes
 			CalculateRoutesAction.BeginInvoke(placeMarkFrom, placeMarkTo, (ar) => 
 			{
 				CalculateRoutesAction.EndInvoke(ar);
+				UpdateMap(placeMarkFrom, placeMarkTo);
 				
 			}, null);
+			
+			
 		}
 		
-		private void CalculateRoutesFromAction_Handler(PlaceMark from, PlaceMark to)
+		private void UpdateMap(PlaceMark from, PlaceMark to)
 		{
-			CalculateRoutes(from.Coordinate, to.Coordinate);
-			
+		
 			using(var pool = new NSAutoreleasePool())
 			{
 
-				pool.InvokeOnMainThread(()=>
+				pool.BeginInvokeOnMainThread(()=>
 				{
 					_MapView.AddAnnotation(new MKAnnotation[] { from, to });
 					_MapView.SetRegion(new MKCoordinateRegion(from.Coordinate, new MKCoordinateSpan(0.2, 0.2)), true);
@@ -101,7 +103,13 @@ namespace MapWithRoutes
 					UpdateRouteView();
 					CenterMap();
 				});
-			}
+			}	
+		}
+		
+		private void CalculateRoutesFromAction_Handler(PlaceMark from, PlaceMark to)
+		{
+			CalculateRoutes(from.Coordinate, to.Coordinate);
+			
 		}
 		
 		
