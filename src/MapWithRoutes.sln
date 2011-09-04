@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapWithRoutes", "MapWithRoutes\MapWithRoutes.csproj", "{342F2BE7-B3E7-4FFC-A099-285A6E5F3EA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapWithRoutes.Sample", "MapWithRoutes.Sample\MapWithRoutes.Sample.csproj", "{F1E42DAB-C734-4151-95C7-8225CD008EAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{342F2BE7-B3E7-4FFC-A099-285A6E5F3EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{342F2BE7-B3E7-4FFC-A099-285A6E5F3EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{342F2BE7-B3E7-4FFC-A099-285A6E5F3EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{342F2BE7-B3E7-4FFC-A099-285A6E5F3EA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Release|iPhone.Build.0 = Release|iPhone
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F1E42DAB-C734-4151-95C7-8225CD008EAD}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MapWithRoutes.Sample\MapWithRoutes.Sample.csproj
+	EndGlobalSection
+EndGlobal
